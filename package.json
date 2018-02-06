@@ -1,5 +1,5 @@
 {
-  "name": "react-async-component",
+  "name": "@fyresite/react-async-component",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
