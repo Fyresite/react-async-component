@@ -34,13 +34,18 @@ export default class AsyncComponent extends Component {
   render() {
     const { _Component } = this.state;
 
+    let rootStyle = {
+      height: !_Component ? 'inherit' : '0',
+      width: 'inherit'
+    };
+
     let loaderStyle = {
       opacity: _Component === null ? 1 : 0,
       transition: 'opacity 500ms'
     };
 
     return (
-      <div style={{ height: 'inherit', width: 'inherit' }}>
+      <div style={rootStyle}>
         <div className="loader-container" style={loaderStyle}>
           { this.props.loader || 'Loading...' }
         </div>
