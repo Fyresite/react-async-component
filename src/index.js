@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import './style.scss';
 
 export default class AsyncComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      _Component: null
+      _Component: null,
+      loading: true
     };
+
+    this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
   }
 
   componentWillMount() {
@@ -25,25 +29,38 @@ export default class AsyncComponent extends Component {
     }
   }
 
+  componentDidMount() {
+    this.loaderContainer.addEventListener('animationend', this.handleAnimationEnd);
+  }
+
   componentWillUnmount() {
     if (typeof this.props.onLoadStart === 'function') {
       this.props.onLoadStart();
     }
+
+    this.loaderContainer.removeEventListener('animationend', this.handleAnimationEnd);
+  }
+
+  handleAnimationEnd(e) {
+    this.setState({ loading: false });
   }
 
   render() {
     const { _Component } = this.state;
 
-    let loaderStyle = {
-      height: !_Component ? '100%' : '0',
-      opacity: _Component === null ? 1 : 0,
-      transition: 'opacity 500ms'
-    };
+    let loaderContainerClasses = ['loader-container'];
+
+    if (!this.state.loading) {
+      loaderContainerClasses.push('loaded');
+    } else {
+      if (_Component) {
+        loaderContainerClasses.push('fade');
+      }
+    }
 
     return (
-      <div style={{ height: '100%', width: '100%' }}>
-        <div className="loader-container" style={loaderStyle}>
-          
+      <div className="async-component">
+        <div ref={el => this.loaderContainer = el} className={loaderContainerClasses.join(' ')}>
           { this.props.loader || 'Loading...' }
         </div>
         {_Component ? <_Component {...this.props} /> : ''}
