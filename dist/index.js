@@ -66,19 +66,15 @@ var AsyncComponent = function (_Component2) {
       var _Component = this.state._Component;
 
 
-      var rootStyle = {
-        height: !_Component ? 'inherit' : '0',
-        width: 'inherit'
-      };
-
       var loaderStyle = {
+        height: !_Component ? '100%' : '0',
         opacity: _Component === null ? 1 : 0,
         transition: 'opacity 500ms'
       };
 
       return _react2.default.createElement(
         'div',
-        { style: rootStyle },
+        { style: { height: 'inherit', width: 'inherit' } },
         _react2.default.createElement(
           'div',
           { className: 'loader-container', style: loaderStyle },
