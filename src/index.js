@@ -41,7 +41,7 @@ export default class AsyncComponent extends Component {
     };
 
     return (
-      <div style={{ height: 'inherit', width: 'inherit' }}>
+      <div style={{ height: '100%', width: '100%' }}>
         <div className="loader-container" style={loaderStyle}>
           
           { this.props.loader || 'Loading...' }

@@ -74,7 +74,7 @@ var AsyncComponent = function (_Component2) {
 
       return _react2.default.createElement(
         'div',
-        { style: { height: 'inherit', width: 'inherit' } },
+        { style: { height: '100%', width: '100%' } },
         _react2.default.createElement(
           'div',
           { className: 'loader-container', style: loaderStyle },
