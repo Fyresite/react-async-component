@@ -14,8 +14,6 @@ export default class AsyncComponent extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
-    console.log(this.props);
     if (typeof this.props.onLoadStart === 'function') {
       this.props.onLoadStart();
     }
@@ -42,7 +40,6 @@ export default class AsyncComponent extends Component {
   }
 
   handleAnimationEnd(e) {
-    console.log('handle animation end');
     this.setState({ loading: false });
   }
 
