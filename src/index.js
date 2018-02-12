@@ -13,7 +13,9 @@ export default class AsyncComponent extends Component {
     this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    console.log('componentDidMount');
+    console.log(this.props);
     if (typeof this.props.onLoadStart === 'function') {
       this.props.onLoadStart();
     }
@@ -27,9 +29,7 @@ export default class AsyncComponent extends Component {
         });
       });
     }
-  }
 
-  componentDidMount() {
     this.loaderContainer.addEventListener('animationend', this.handleAnimationEnd);
   }
 
@@ -42,6 +42,7 @@ export default class AsyncComponent extends Component {
   }
 
   handleAnimationEnd(e) {
+    console.log('handle animation end');
     this.setState({ loading: false });
   }
 

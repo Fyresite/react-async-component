@@ -109,10 +109,12 @@ var AsyncComponent = function (_Component2) {
   }
 
   _createClass(AsyncComponent, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       var _this2 = this;
 
+      console.log('componentDidMount');
+      console.log(this.props);
       if (typeof this.props.onLoadStart === 'function') {
         this.props.onLoadStart();
       }
@@ -128,10 +130,7 @@ var AsyncComponent = function (_Component2) {
           });
         });
       }
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+
       this.loaderContainer.addEventListener('animationend', this.handleAnimationEnd);
     }
   }, {
@@ -146,6 +145,7 @@ var AsyncComponent = function (_Component2) {
   }, {
     key: 'handleAnimationEnd',
     value: function handleAnimationEnd(e) {
+      console.log('handle animation end');
       this.setState({ loading: false });
     }
   }, {
