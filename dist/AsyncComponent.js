@@ -113,8 +113,6 @@ var AsyncComponent = function (_Component2) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      console.log('componentDidMount');
-      console.log(this.props);
       if (typeof this.props.onLoadStart === 'function') {
         this.props.onLoadStart();
       }
@@ -145,7 +143,6 @@ var AsyncComponent = function (_Component2) {
   }, {
     key: 'handleAnimationEnd',
     value: function handleAnimationEnd(e) {
-      console.log('handle animation end');
       this.setState({ loading: false });
     }
   }, {
