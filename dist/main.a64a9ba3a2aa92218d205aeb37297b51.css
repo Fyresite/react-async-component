@@ -1,0 +1,23 @@
+.async-component {
+  height: 100%;
+  width: 100%; }
+  .async-component .loader-container {
+    display: block;
+    opacity: 1;
+    animation-duration: 500ms; }
+    .async-component .loader-container.fade {
+      animation-name: fadeOut; }
+    .async-component .loader-container.loaded {
+      display: none;
+      opacity: 0; }
+
+@keyframes fadeOut {
+  0% {
+    display: block;
+    opacity: 1; }
+  99% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: none;
+    opacity: 0; } }

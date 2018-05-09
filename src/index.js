@@ -18,7 +18,7 @@ export default class AsyncComponent extends Component {
       this.props.onLoadStart();
     }
 
-    if(!this.state.Component) {
+    if(!this.state._Component) {
       this.props.moduleProvider().then(({component}) => {
         this.setState({ _Component: component }, () => {
           if (typeof this.props.onLoadEnd === 'function') {
