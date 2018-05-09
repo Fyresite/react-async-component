@@ -104,7 +104,7 @@ var AsyncComponent = function (_Component2) {
       loading: true
     };
 
-    _this.handleAnimationEnd = _this.handleAnimationEnd.bind(_this);
+    // this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
     return _this;
   }
 
@@ -113,67 +113,60 @@ var AsyncComponent = function (_Component2) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      if (typeof this.props.onLoadStart === 'function') {
-        this.props.onLoadStart();
-      }
+      // if (typeof this.props.onLoadStart === 'function') {
+      //   this.props.onLoadStart();
+      // }
 
       if (!this.state._Component) {
         this.props.moduleProvider().then(function (_ref) {
           var component = _ref.component;
 
-          _this2.setState({ _Component: component }, function () {
-            if (typeof _this2.props.onLoadEnd === 'function') {
-              _this2.props.onLoadEnd();
-            }
+          _this2.setState({
+            _Component: component,
+            loading: false
+          }, function () {
+            // if (typeof this.props.onLoadEnd === 'function') {
+            //   this.props.onLoadEnd();
+            // }
           });
         });
       }
 
-      this.loaderContainer.addEventListener('animationend', this.handleAnimationEnd);
+      // this.loaderContainer.addEventListener('animationend', this.handleAnimationEnd);
     }
   }, {
     key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      if (typeof this.props.onLoadStart === 'function') {
-        this.props.onLoadStart();
-      }
+    value: function componentWillUnmount() {}
+    // if (typeof this.props.onLoadStart === 'function') {
+    //   this.props.onLoadStart();
+    // }
 
-      this.loaderContainer.removeEventListener('animationend', this.handleAnimationEnd);
-    }
-  }, {
-    key: 'handleAnimationEnd',
-    value: function handleAnimationEnd(e) {
-      this.setState({ loading: false });
-    }
+    // this.loaderContainer.removeEventListener('animationend', this.handleAnimationEnd);
+
+
+    // handleAnimationEnd(e) {
+    //   this.setState({ loading: false });
+    // }
+
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
       var _Component = this.state._Component;
 
+      // let loaderContainerClasses = ['loader-container'];
 
-      var loaderContainerClasses = ['loader-container'];
-
-      if (!this.state.loading) {
-        loaderContainerClasses.push('loaded');
-      } else {
-        if (_Component) {
-          loaderContainerClasses.push('fade');
-        }
-      }
+      // if (!this.state.loading) {
+      //   loaderContainerClasses.push('loaded');
+      // } else {
+      //   if (_Component) {
+      //     loaderContainerClasses.push('fade');
+      //   }
+      // }
 
       return _react2.default.createElement(
         'div',
         { className: 'async-component' },
-        _react2.default.createElement(
-          'div',
-          { ref: function ref(el) {
-              return _this3.loaderContainer = el;
-            }, className: loaderContainerClasses.join(' ') },
-          this.props.loader || 'Loading...'
-        ),
-        _Component ? _react2.default.createElement(_Component, this.props) : ''
+        this.state.loading ? this.props.loader || 'Loading...' : _react2.default.createElement(_Component, this.props)
       );
     }
   }]);
